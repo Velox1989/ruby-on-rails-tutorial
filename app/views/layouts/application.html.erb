@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SampleApp</title>
-    <%= csrf_meta_tags %>
+    <title><%= yield(:title) %> | RoR Sample App</title>
 
+    <!-- include the application stylesheet and JavaScript, which are part of
+    the asset pipeline (Section 5.2.1), together with the Rails method
+    csrf_meta_tags, which prevents cross-site request forgery (CSRF),
+    a type of malicious web attack.-->
+    <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
   <body>
+
+    <!-- inserting the contents of each page into the layout -->
     <%= yield %>
+
   </body>
 </html>
