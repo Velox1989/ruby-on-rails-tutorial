@@ -1,0 +1,9 @@
+<% provide(:title, "All users") %>
+
+
+<% @users.each_with_index do |user, index| %>
+  <ul>
+    <!--<li><%= (index + 1).to_s + "." %> <%= user.name %></li>-->
+    <li><%= link_to user.name, user %></li>
+  </ul>
+<% end %>
