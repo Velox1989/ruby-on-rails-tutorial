@@ -8,8 +8,19 @@ class User < ApplicationRecord
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
+
   has_secure_password
-  validates :password, presence: true, length: { minimum: 6 }
+
+  # when updating users, we need to make an exception to the password
+  # validation if the password
+  # is empty. We can do this by passing the allow_nil: true
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+
+  # new users still cannot to sign up with empty passwords
+  # has_secure_password includes a separate presence validation that
+  # specifically catches nil passwords. (Because nil passwords now bypass
+  # the main presence validation but are still caught by has_secure_password,
+  # this also fixes the duplicate error message
 
   # returns the hash digest of the given string
   def User.digest(string)

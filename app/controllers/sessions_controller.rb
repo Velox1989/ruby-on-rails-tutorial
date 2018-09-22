@@ -16,8 +16,7 @@ class SessionsController < ApplicationController
     # redirect to the user's show page
     # rails automatically converts this to the route for the user’s profile
     # page: user_url(user)
-    redirect_to user
-
+    redirect_back_or user
     else
       # he issue is that the contents of the flash persist for one request,
       # but unlike a redirect, re-rendering
